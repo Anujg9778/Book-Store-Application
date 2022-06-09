@@ -7,10 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -20,9 +16,6 @@ public class JobServiceImpl  implements JobService {
 
     @Autowired
     JobRepository jobRepository;
-
-    @Autowired
-    EntityManager entityManager;
 
     @Override
     @Transactional
@@ -50,13 +43,12 @@ public class JobServiceImpl  implements JobService {
 
     @Override
     public List<Job> getJobsByLocation(String location) {
+        return jobRepository.getJobsByLocation(location);
+    }
 
-        Query query=entityManager.createQuery("from Job where jobLocation=:location");
-
-        query.setParameter("location",location);
-
-        return query.getResultList();
-
+    @Override
+    public List<Job> getJobsBySkills(String skill) {
+        return jobRepository.getJobsBySkill(skill);
     }
 
 }

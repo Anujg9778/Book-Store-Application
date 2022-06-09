@@ -4,7 +4,6 @@ package com.example.greencommute.service.impl;
 import com.example.greencommute.entity.User;
 import com.example.greencommute.respository.UserRepository;
 import com.example.greencommute.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,9 +12,11 @@ import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-    @Autowired
     private UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository){
+        this.userRepository=userRepository;
+    }
 
     @Override
     @Transactional
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void saveUser(User theUser) {
-        userRepository.save(theUser);
+    public User saveUser(User theUser) {
+        return userRepository.save(theUser);
     }
 }

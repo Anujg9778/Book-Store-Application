@@ -17,4 +17,6 @@ public interface JobService{
 
     List<Job> getJobsByLocation(String location);
 
+    List<Job> getJobsBySkills(String skill);
+
 }

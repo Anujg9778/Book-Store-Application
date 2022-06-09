@@ -39,7 +39,7 @@ public class Skill {
     @JoinTable(
             name="user_skills",
             joinColumns = @JoinColumn(name="skill_id"),
-            inverseJoinColumns = @JoinColumn(name="user_id")
+            inverseJoinColumns = @JoinColumn(name="username")
 
     )
     private List<User> users;

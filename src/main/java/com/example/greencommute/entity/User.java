@@ -15,27 +15,23 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="user")
+@Table(name="users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="user_id")
-    private int userId;
-
-    @Column(name="user_name")
+    @Column(name="username")
     private String userName;
 
-    @Column(name="user_email")
-    private String userEmail;
+    @Column(name="password")
+    private String password;
 
-    @Column(name="user_age")
-    private int userAge;
+    @Column(name="enabled")
+    private int enabled;
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(
             name="user_skills",
-            joinColumns = @JoinColumn(name="user_id"),
+            joinColumns = @JoinColumn(name="username"),
             inverseJoinColumns = @JoinColumn(name="skill_id")
 
     )
@@ -44,7 +40,7 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinTable(
             name="user_jobs",
-            joinColumns = @JoinColumn(name="user_id"),
+            joinColumns = @JoinColumn(name="username"),
             inverseJoinColumns = @JoinColumn(name="job_id")
 
     )

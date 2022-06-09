@@ -24,8 +24,6 @@ public class Job {
     @Column(name="job_name")
     private String jobName;
 
-    @Column(name="job_description")
-    private String jobDescription;
 
     @Column(name="job_location")
     private String jobLocation;
@@ -43,7 +41,7 @@ public class Job {
     @JoinTable(
             name="user_jobs",
             joinColumns = @JoinColumn(name="job_id"),
-            inverseJoinColumns = @JoinColumn(name="user_id")
+            inverseJoinColumns = @JoinColumn(name="username")
 
     )
     private List<User> users;

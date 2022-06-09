@@ -15,4 +15,6 @@ public interface JobService{
 
     Job saveJob(Job theJob);
 
+    List<Job> getJobsByLocation(String location);
+
 }

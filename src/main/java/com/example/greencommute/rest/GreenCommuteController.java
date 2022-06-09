@@ -6,6 +6,7 @@ import com.example.greencommute.entity.User;
 import com.example.greencommute.service.JobService;
 import com.example.greencommute.service.SkillService;
 import com.example.greencommute.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +15,9 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 @RestController
+@Slf4j
 public class GreenCommuteController {
 
-    Logger myLogger=Logger.getLogger(GreenCommuteController.class.getName());
     @Autowired
     private UserService userService;
 
@@ -34,7 +35,7 @@ public class GreenCommuteController {
     @GetMapping("/jobs")
     public List<Job> findAllJobs(){
 
-        myLogger.info(" got all the jobs");
+        log.info(" got all the jobs");
         return jobService.findAllJobs();
     }
 
@@ -54,7 +55,7 @@ public class GreenCommuteController {
             for(Skill skill:skills)
                 skillService.saveSkill(skill);
         }
-        myLogger.info(" job id :"+theJob.getJobId()+"job name :"+theJob.getJobName()+"the skills"+theJob.getSkills());
+        log.info(" job id :"+theJob.getJobId()+"job name :"+theJob.getJobName()+"the skills"+theJob.getSkills());
 
         return jobService.saveJob(theJob);
     }
@@ -74,6 +75,5 @@ public class GreenCommuteController {
 
         return jobService.getJobsByLocation(location);
     }
-
 
 }

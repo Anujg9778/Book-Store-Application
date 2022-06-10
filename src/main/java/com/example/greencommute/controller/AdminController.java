@@ -52,10 +52,7 @@ public class AdminController {
 
         Job theJob=jobMapper.convertToJob(theJobDTO);
 
-        Optional<Job> job= jobService.findJobById(theJob.getJobId());
-
-        if(!job.isPresent())
-            throw new JobNotFoundException("Job does not exist");
+        checkJobId(theJob.getJobId());
 
         return jobMapper.convertToJobDTO(jobService.saveJob(theJob));
     }
@@ -63,11 +60,8 @@ public class AdminController {
     @DeleteMapping("/jobs/{jobId}")
     public String deleteJobById(@PathVariable int jobId){
 
-        Optional<Job> theJob=jobService.findJobById(jobId);
+        checkJobId(jobId);
 
-        if(!theJob.isPresent()){
-            throw new JobNotFoundException("Given Id does not exist");
-        }
         jobService.deleteJob(jobId);
         return " job with jobId :"+jobId+" deleted.";
 
@@ -85,10 +79,7 @@ public class AdminController {
     @GetMapping("/jobs/{jobId}")
     public Optional<Job> findJobById(@PathVariable int jobId){
 
-        Optional<Job> theJob=jobService.findJobById(jobId);
-        if(!theJob.isPresent()){
-            throw new JobNotFoundException("Given Id doesnot exist");
-        }
+        checkJobId(jobId);
 
         return jobService.findJobById(jobId);
     }
@@ -107,5 +98,12 @@ public class AdminController {
                 .stream()
                 .map(jobMapper::convertToJobDTO)
                 .collect(Collectors.toList());
+    }
+
+    private void checkJobId(int jobId){
+        Optional<Job> theJob=jobService.findJobById(jobId);
+        if(!theJob.isPresent()){
+            throw new JobNotFoundException("Given Id does not exist");
+        }
     }
 }

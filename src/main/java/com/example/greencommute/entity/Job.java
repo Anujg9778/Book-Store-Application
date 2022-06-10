@@ -28,21 +28,12 @@ public class Job {
     @Column(name="job_location")
     private String jobLocation;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.LAZY,cascade =CascadeType.MERGE)
     @JoinTable(
             name="jobs_skills",
             joinColumns = @JoinColumn(name="job_id"),
             inverseJoinColumns = @JoinColumn(name="skill_id")
-
     )
     private List<Skill> skills;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE,CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinTable(
-            name="user_jobs",
-            joinColumns = @JoinColumn(name="job_id"),
-            inverseJoinColumns = @JoinColumn(name="username")
-
-    )
-    private List<User> users;
 }

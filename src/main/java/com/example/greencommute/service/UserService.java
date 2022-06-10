@@ -13,6 +13,6 @@ public interface UserService {
 
     void deleteUser(int theUserId);
 
-    void saveUser(User theUser);
+    User saveUser(User theUser);
 
 }

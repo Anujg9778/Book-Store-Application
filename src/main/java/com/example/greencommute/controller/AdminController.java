@@ -67,9 +67,9 @@ public class AdminController {
 
     }
 
-
     @GetMapping("/jobs")
     public List<JobDTO> findAllJobs(){
+
         return jobService.findAllJobs()
                 .stream()
                 .map(jobMapper::convertToJobDTO)
@@ -77,15 +77,18 @@ public class AdminController {
     }
 
     @GetMapping("/jobs/{jobId}")
-    public Optional<Job> findJobById(@PathVariable int jobId){
+    public JobDTO findJobById(@PathVariable int jobId){
 
         checkJobId(jobId);
 
-        return jobService.findJobById(jobId);
+        Optional<Job> theJob=jobService.findJobById(jobId);
+
+        return jobMapper.convertToJobDTO(theJob.get());
     }
 
     @GetMapping("/jobs/location")
     public List<JobDTO> getJobsByLocation(@RequestParam("location") String location){
+
         return jobService.getJobsByLocation(location)
                 .stream()
                 .map(jobMapper::convertToJobDTO)
@@ -94,6 +97,7 @@ public class AdminController {
 
     @GetMapping("/jobs/skills")
     public List<JobDTO> getJobsBySkills(@RequestParam("skill") String skill){
+
         return jobService.getJobsBySkills(skill)
                 .stream()
                 .map(jobMapper::convertToJobDTO)

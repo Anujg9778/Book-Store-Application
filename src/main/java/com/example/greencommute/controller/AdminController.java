@@ -18,7 +18,7 @@ import java.util.Optional;
 @RequestMapping("/admin")
 @Slf4j
 @RestController
-public class AdminConstructor {
+public class AdminController {
     @Autowired
     private UserService userService;
     @Autowired

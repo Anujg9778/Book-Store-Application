@@ -1,10 +1,11 @@
 package com.example.greencommute.controller;
 
 
+import com.example.greencommute.dto.JobDTO;
 import com.example.greencommute.entity.Job;
 import com.example.greencommute.entity.Skill;
-import com.example.greencommute.entity.User;
 import com.example.greencommute.exception.JobNotFoundException;
+import com.example.greencommute.mapper.JobMapper;
 import com.example.greencommute.service.JobService;
 import com.example.greencommute.service.SkillService;
 import com.example.greencommute.service.UserService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequestMapping("/admin")
 @Slf4j
@@ -27,26 +29,13 @@ public class AdminController {
     @Autowired
     private JobService jobService;
 
-    @GetMapping("/jobs")
-    public List<Job> findAllJobs(){
-
-        return jobService.findAllJobs();
-    }
-
-    @GetMapping("/jobs/{jobId}")
-    public Optional<Job> findJobById(@PathVariable int jobId){
-
-        Optional<Job> theJob=jobService.findJobById(jobId);
-
-        if(theJob==null){
-            throw new JobNotFoundException("Given Id does not exist");
-        }
-        return theJob;
-    }
-
+    @Autowired
+    private JobMapper jobMapper;
 
     @PostMapping("/jobs")
-    public Job saveJob(@RequestBody Job theJob){
+    public JobDTO saveJob(@RequestBody JobDTO theJobDTO){
+
+        Job theJob=jobMapper.convertToJob(theJobDTO);
 
         List<Skill> skills=theJob.getSkills();
 
@@ -55,40 +44,68 @@ public class AdminController {
                 skillService.saveSkill(skill);
             }
         }
-        log.info(" job id :"+theJob.getJobId()+"job name :"+theJob.getJobName()+"the skills"+theJob.getSkills());
-
-        return jobService.saveJob(theJob);
+        return jobMapper.convertToJobDTO(jobService.saveJob(theJob));
     }
 
     @PutMapping("/jobs")
-    public Job updateJob(@RequestBody Job theJob){
-        return jobService.saveJob(theJob);
+    public JobDTO updateJob(@RequestBody JobDTO theJobDTO){
+
+        Job theJob=jobMapper.convertToJob(theJobDTO);
+
+        Optional<Job> job= jobService.findJobById(theJob.getJobId());
+
+        if(!job.isPresent())
+            throw new JobNotFoundException("Job does not exist");
+
+        return jobMapper.convertToJobDTO(jobService.saveJob(theJob));
     }
 
     @DeleteMapping("/jobs/{jobId}")
-    public void deleteJobById(@PathVariable int jobId){
+    public String deleteJobById(@PathVariable int jobId){
 
         Optional<Job> theJob=jobService.findJobById(jobId);
 
-        if(theJob==null){
+        if(!theJob.isPresent()){
             throw new JobNotFoundException("Given Id does not exist");
         }
         jobService.deleteJob(jobId);
+        return " job with jobId :"+jobId+" deleted.";
+
+    }
+
+
+    @GetMapping("/jobs")
+    public List<JobDTO> findAllJobs(){
+        return jobService.findAllJobs()
+                .stream()
+                .map(jobMapper::convertToJobDTO)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/jobs/{jobId}")
+    public Optional<Job> findJobById(@PathVariable int jobId){
+
+        Optional<Job> theJob=jobService.findJobById(jobId);
+        if(!theJob.isPresent()){
+            throw new JobNotFoundException("Given Id doesnot exist");
+        }
+
+        return jobService.findJobById(jobId);
     }
 
     @GetMapping("/jobs/location")
-    public List<Job> getJobsByLocation(@RequestParam("location") String location){
-        return jobService.getJobsByLocation(location);
+    public List<JobDTO> getJobsByLocation(@RequestParam("location") String location){
+        return jobService.getJobsByLocation(location)
+                .stream()
+                .map(jobMapper::convertToJobDTO)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/jobs/skills")
-    public List<Job> getJobsBySkills(@RequestParam("skill") String skill){
-        return jobService.getJobsBySkills(skill);
+    public List<JobDTO> getJobsBySkills(@RequestParam("skill") String skill){
+        return jobService.getJobsBySkills(skill)
+                .stream()
+                .map(jobMapper::convertToJobDTO)
+                .collect(Collectors.toList());
     }
-
-    @GetMapping("/users")
-    public List<User> findUsers(){
-        return userService.findAll();
-    }
-
 }

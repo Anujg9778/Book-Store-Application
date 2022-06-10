@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class JobServiceImpl  implements JobService {
 
@@ -20,7 +19,8 @@ public class JobServiceImpl  implements JobService {
     @Override
     @Transactional
     public List<Job> findAllJobs() {
-        return jobRepository.findAll();
+        return jobRepository
+                .findAll();
     }
 
     @Override

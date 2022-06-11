@@ -3,7 +3,6 @@ package com.example.greencommute.service.impl;
 import com.example.greencommute.entity.Skill;
 import com.example.greencommute.respository.SkillRepository;
 import com.example.greencommute.service.SkillService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,23 +11,24 @@ import java.util.Optional;
 
 @Service
 public class SkillServiceImpl implements SkillService {
-
-    @Autowired
-    SkillRepository skillRepository;
+    private final SkillRepository skillRepository;
+    public SkillServiceImpl(SkillRepository skillRepository){
+        this.skillRepository=skillRepository;
+    }
 
     @Override
     @Transactional
-    public List<Skill> findAll() {
+    public List<Skill> findAllSkills() {
         return skillRepository.findAll();
     }
 
     @Override
-    public Optional<Skill> findSkill(int theSkillId) {
+    public Optional<Skill> findSkillById(int theSkillId) {
         return skillRepository.findById(theSkillId);
     }
 
     @Override
-    public void deleteSkill(int theSkillId) {
+    public void deleteSkillById(int theSkillId) {
         skillRepository.deleteById(theSkillId);
     }
 

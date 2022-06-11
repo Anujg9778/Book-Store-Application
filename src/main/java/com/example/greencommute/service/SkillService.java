@@ -1,18 +1,17 @@
 package com.example.greencommute.service;
 
 import com.example.greencommute.entity.Skill;
-import com.example.greencommute.entity.User;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface SkillService {
 
-    List<Skill> findAll();
+    List<Skill> findAllSkills();
 
-    Optional<Skill> findSkill(int theSkillId);
+    Optional<Skill> findSkillById(int theSkillId);
 
-    void deleteSkill(int theSkillId);
+    void deleteSkillById(int theSkillId);
 
     Skill saveSkill(Skill theSkill);
 

@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public interface SkillService {
 
-    List<Skill> findAll();
+    List<Skill> findAllSkills();
 
-    Optional<Skill> findSkill(int theSkillId);
+    Optional<Skill> findSkillById(int theSkillId);
 
-    void deleteSkill(int theSkillId);
+    void deleteSkillById(int theSkillId);
 
     Skill saveSkill(Skill theSkill);
 

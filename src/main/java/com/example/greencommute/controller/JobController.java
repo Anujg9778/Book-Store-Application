@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/admin")
 @Slf4j
 @RestController
-public class AdminController {
+public class JobController {
     @Autowired
     private UserService userService;
     @Autowired
@@ -79,10 +79,10 @@ public class AdminController {
     @GetMapping("/jobs/{jobId}")
     public JobDTO findJobById(@PathVariable int jobId){
 
-        checkJobId(jobId);
-
         Optional<Job> theJob=jobService.findJobById(jobId);
-
+        if(!theJob.isPresent()){
+            throw new JobNotFoundException("Given Id does not exist");
+        }
         return jobMapper.convertToJobDTO(theJob.get());
     }
 

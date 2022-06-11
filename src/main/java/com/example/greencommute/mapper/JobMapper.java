@@ -6,6 +6,8 @@ import com.example.greencommute.entity.Job;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class JobMapper {
@@ -19,5 +21,9 @@ public class JobMapper {
 
     public Job convertToJob(JobDTO jobDTO){
         return modelMapper.map(jobDTO,Job.class);
+    }
+
+    public List<JobDTO> toJobDtoList(List<Job> jobsList){
+        return jobsList.stream().map(this::convertToJobDTO).collect(Collectors.toList());
     }
 }

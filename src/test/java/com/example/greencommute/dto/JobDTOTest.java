@@ -11,6 +11,7 @@ class JobDTOTest {
 
     @Test
     void jobsDtoEntityTest(){
+
         Assertions.assertEquals(1, jobDTO.getJobId());
         Assertions.assertEquals("software engineer", jobDTO.getJobName());
         Assertions.assertEquals("Hyderabad",jobDTO.getJobLocation());

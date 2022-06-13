@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class JobNotFoundError {
+public class ErrorResponse {
 
     private String message;
     private long timeStamp;

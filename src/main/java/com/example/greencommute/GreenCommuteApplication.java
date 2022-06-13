@@ -1,6 +1,7 @@
 package com.example.greencommute;
 
 import com.example.greencommute.mapper.JobMapper;
+import com.example.greencommute.mapper.UserMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,6 +22,11 @@ public class GreenCommuteApplication {
 
 	@Bean
 	public JobMapper jobMapper(){
-		return new JobMapper();
+		return new JobMapper(modelMapper());
+	}
+
+	@Bean
+	public UserMapper userMapper(){
+		return new UserMapper(modelMapper());
 	}
 }

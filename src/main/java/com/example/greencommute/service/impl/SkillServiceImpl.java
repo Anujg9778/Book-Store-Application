@@ -4,7 +4,6 @@ import com.example.greencommute.entity.Skill;
 import com.example.greencommute.respository.SkillRepository;
 import com.example.greencommute.service.SkillService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,6 @@ public class SkillServiceImpl implements SkillService {
     }
 
     @Override
-    @Transactional
     public List<Skill> findAllSkills() {
         return skillRepository.findAll();
     }

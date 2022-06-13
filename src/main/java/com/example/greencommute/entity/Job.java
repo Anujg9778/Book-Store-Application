@@ -24,7 +24,6 @@ public class Job {
     @Column(name="job_name")
     private String jobName;
 
-
     @Column(name="job_location")
     private String jobLocation;
 

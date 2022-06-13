@@ -62,10 +62,11 @@ class SkillServiceImplTest {
 
     @Test
     void deleteSkill() {
+
         Skill skill1=new Skill(1,"spring");
 
         doNothing().when(skillRepository).deleteById(1);
-        skillRepository.deleteById(1);
+        skillService.deleteSkillById(1);
         Mockito.verify(skillRepository).deleteById(1);
 
     }

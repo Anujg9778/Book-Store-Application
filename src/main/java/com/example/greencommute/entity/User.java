@@ -1,7 +1,5 @@
 package com.example.greencommute.entity;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +8,6 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="users")
@@ -24,5 +21,14 @@ public class User {
     private String password;
 
     @Column(name="enabled")
-    private int enabled;
+    private int enabled=1;
+
+    @Transient
+    private String role;
+
+    public User(String userName, String password, int enabled) {
+        this.userName = userName;
+        this.password = password;
+        this.enabled = enabled;
+    }
 }

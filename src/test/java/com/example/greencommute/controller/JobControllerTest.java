@@ -8,7 +8,6 @@ import com.example.greencommute.dto.JobDTO;
 import com.example.greencommute.entity.Job;
 import com.example.greencommute.entity.Skill;
 import com.example.greencommute.mapper.JobMapper;
-import com.example.greencommute.respository.JobRepository;
 
 import com.example.greencommute.service.SkillService;
 import com.example.greencommute.service.impl.JobServiceImpl;
@@ -24,7 +23,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -46,8 +44,6 @@ public class JobControllerTest {
     @InjectMocks
     JobController jobController;
 
-    @Mock
-    JobRepository jobRepository;
     @Mock
     JobMapper jobMapper;
 

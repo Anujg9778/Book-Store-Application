@@ -4,10 +4,6 @@ import com.example.greencommute.dto.UserDTO;
 import com.example.greencommute.entity.Authority;
 import com.example.greencommute.entity.User;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserMapper {
     ModelMapper modelMapper;

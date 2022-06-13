@@ -6,8 +6,6 @@ import com.example.greencommute.respository.UserRepository;
 import com.example.greencommute.service.UserService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;

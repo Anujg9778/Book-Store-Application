@@ -3,7 +3,6 @@ package com.example.greencommute.service.impl;
 import com.example.greencommute.entity.Skill;
 import com.example.greencommute.respository.SkillRepository;
 import com.example.greencommute.service.SkillService;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doNothing;
 
 

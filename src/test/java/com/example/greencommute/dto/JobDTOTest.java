@@ -3,7 +3,6 @@ package com.example.greencommute.dto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class JobDTOTest {
 

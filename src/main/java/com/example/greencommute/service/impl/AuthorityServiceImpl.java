@@ -2,13 +2,11 @@ package com.example.greencommute.service.impl;
 
 import com.example.greencommute.entity.Authority;
 import com.example.greencommute.entity.User;
-import com.example.greencommute.exception.UserNotFoundException;
 import com.example.greencommute.respository.AuthorityRepository;
 import com.example.greencommute.respository.UserRepository;
 import com.example.greencommute.service.AuthorityService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

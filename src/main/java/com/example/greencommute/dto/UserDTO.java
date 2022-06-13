@@ -1,7 +1,5 @@
 package com.example.greencommute.dto;
 
-
-import com.example.greencommute.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -8,15 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class AuthorityTest {
 
-    Authority authority=new Authority("shiv","user");
+    Authorities authority=new Authorities("shiv","user");
 
     @Test
-    public void authorityEntityTest(){
+    void authorityEntityTest(){
 
         assertEquals("shiv",authority.getUserName());
         assertEquals("user",authority.getAuthority());
 
-        Authority authority1=new Authority();
+        Authorities authority1=new Authorities();
         authority1.setUserName("shiv");
         authority1.setAuthority("admin");
         authority1.setUser(null);

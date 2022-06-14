@@ -18,6 +18,9 @@
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.sources>src/main/java</sonar.sources>
 		<sonar.language>java</sonar.language>
+		<sonar.exclusions>
+			**/com/example/greencommute/security/**
+		</sonar.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>

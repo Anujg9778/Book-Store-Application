@@ -1,16 +1,10 @@
 package com.example.greencommute.mapper;
 
 import com.example.greencommute.dto.UserDTO;
-import com.example.greencommute.entity.Authority;
+import com.example.greencommute.entity.Authorities;
 import com.example.greencommute.entity.User;
-import org.modelmapper.ModelMapper;
 
 public class UserMapper {
-    ModelMapper modelMapper;
-
-    public UserMapper(ModelMapper mapper){
-        this.modelMapper=mapper;
-    }
 
     public User convertToUser(UserDTO userDTO){
 
@@ -30,7 +24,7 @@ public class UserMapper {
         return userDTO;
     }
 
-    public UserDTO convertToUserDTOFromAuthority(Authority authority){
+    public UserDTO convertToUserDTOFromAuthority(Authorities authority){
         UserDTO userDTO=new UserDTO();
         userDTO.setUserName(authority.getUserName());
         userDTO.setPassword(authority.getUser().getPassword());

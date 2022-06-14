@@ -1,6 +1,5 @@
 package com.example.greencommute.exception;
 
-import com.example.greencommute.controller.JobController;
 import com.example.greencommute.respository.JobRepository;
 import com.example.greencommute.service.JobService;
 import com.example.greencommute.service.impl.JobServiceImpl;
@@ -30,9 +29,6 @@ class RestExceptionHandlerTest {
     }
     @Mock
     RestExceptionHandler restExceptionHandler;
-
-    @Mock
-    JobController jobController;
 
     @Test
     void exceptionHandler() {

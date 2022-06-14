@@ -7,7 +7,6 @@ import com.example.greencommute.exception.JobNotFoundException;
 import com.example.greencommute.mapper.JobMapper;
 import com.example.greencommute.service.JobService;
 import com.example.greencommute.service.SkillService;
-import com.example.greencommute.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +19,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @RestController
 public class JobController {
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private SkillService skillService;
@@ -39,7 +36,7 @@ public class JobController {
         }
     }
 
-    @PostMapping("/postJob")
+    @PostMapping("/add-job")
     public JobDTO saveJob(@RequestBody JobDTO theJobDTO){
 
         Job theJob=jobMapper.convertToJob(theJobDTO);

@@ -13,9 +13,9 @@ class UserDTOTest {
 
         UserDTO userDTO=new UserDTO("shiv","shiv123","Admin");
 
-        assertEquals(userDTO.getUserName(),"shiv");
-        assertEquals(userDTO.getPassword(),"shiv123");
-        assertEquals(userDTO.getRole(),"Admin");
+        assertEquals("shiv",userDTO.getUserName());
+        assertEquals("shiv123",userDTO.getPassword());
+        assertEquals("Admin",userDTO.getRole());
 
         UserDTO userDTO1=new UserDTO();
 

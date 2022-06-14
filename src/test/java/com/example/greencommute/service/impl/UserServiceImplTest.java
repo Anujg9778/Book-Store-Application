@@ -28,26 +28,6 @@ class UserServiceImplTest {
     }
 
     @Test
-    void findUserByUserNameTest(){
-        User user=new User("john","john123",1);
-
-        Mockito.when(userRepository.getUserByUserName("john")).thenReturn(user);
-        assertEquals(userService.findUserByUserName("john"),user);
-        Mockito.verify(userRepository).getUserByUserName("john");
-
-    }
-
-    @Test
-    void deleteUserByUserNameTest(){
-
-        User user=new User("john","john123",1);
-
-        Mockito.doNothing().when(userRepository).deleteUserByUserName("john");
-        userService.deleteUser("john");
-        Mockito.verify(userRepository).deleteUserByUserName("john");
-    }
-
-    @Test
     void saveUserTest(){
 
         User user=new User("john","john123",1);

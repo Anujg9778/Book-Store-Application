@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Authority {
+public class Authorities {
 
     @Id
     @Column(name = "username")
@@ -24,7 +24,7 @@ public class Authority {
     @JoinColumn(name="username")
     private User user;
 
-    public Authority(String userName, String authority) {
+    public Authorities(String userName, String authority) {
         this.userName = userName;
         this.authority = authority;
     }

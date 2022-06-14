@@ -1,33 +1,35 @@
 package com.example.greencommute.service.impl;
 
-import com.example.greencommute.entity.Authority;
+import com.example.greencommute.entity.Authorities;
 import com.example.greencommute.entity.User;
 import com.example.greencommute.respository.AuthorityRepository;
-import com.example.greencommute.respository.UserRepository;
 import com.example.greencommute.service.AuthorityService;
+import com.example.greencommute.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class AuthorityServiceImpl implements AuthorityService {
 
     private final AuthorityRepository authorityRepository;
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public AuthorityServiceImpl(UserRepository userRepository,AuthorityRepository authorityRepository){
+    public AuthorityServiceImpl(UserService userService,AuthorityRepository authorityRepository){
         this.authorityRepository=authorityRepository;
-        this.userRepository=userRepository;
+        this.userService=userService;
     }
 
     @Override
-    public Authority addUser(User user) {
+    public Authorities addUser(User user) {
 
-        Authority authority=new Authority();
+        Authorities authority=new Authorities();
         authority.setUserName(user.getUserName());
         authority.setAuthority(user.getRole());
-        User user2= userRepository.save(user);
+        User user2= userService.saveUser(user);
         authority.setUser(user2);
         return authorityRepository.save(authority);
     }
@@ -35,13 +37,24 @@ public class AuthorityServiceImpl implements AuthorityService {
     @Override
     public User findUserByUserName(String userName) {
 
-        Optional<Authority> authority= authorityRepository.findById(userName);
-        User user=null;
-        if(authority.isPresent()) {
-            user = authority.get().getUser();
+        Optional<Authorities> authority= authorityRepository.findById(userName);
+
+        User user;
+        log.info("user "+authority.isPresent());
+
+        if(authority.isPresent()){
+            user=authority.get().getUser();
+            log.info(authority.get().getUserName());
+
+            log.info(authority.get().getAuthority());
+            log.info(" user: "+user);
+
             user.setRole(authority.get().getAuthority());
+            return user;
         }
 
+        user=new User();
+        user.setUserName("not found");
         return user;
     }
 

@@ -27,6 +27,6 @@ public class GreenCommuteApplication {
 
 	@Bean
 	public UserMapper userMapper(){
-		return new UserMapper(modelMapper());
+		return new UserMapper();
 	}
 }

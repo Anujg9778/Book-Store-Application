@@ -20,10 +20,12 @@ class UserTest {
         user1.setUserName("carl");
         user1.setPassword("carl123");
         user1.setEnabled(0);
+        user1.setRole("user");
 
         assertEquals("carl",user1.getUserName());
         assertEquals("carl123",user1.getPassword());
         assertEquals(0,user1.getEnabled());
+        assertEquals("user",user1.getRole());
     }
 
 }

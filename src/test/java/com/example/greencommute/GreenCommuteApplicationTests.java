@@ -2,16 +2,17 @@ package com.example.greencommute;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@RunWith(SpringRunner.class)
 class GreenCommuteApplicationTests {
-	@Test
-	void testApplication() {
-		String[] str = new String[]{};
-		GreenCommuteApplication.main(str);
-		Assertions.assertEquals(1,2-1);
-	}
+
+    @Test
+    void testApplication() {
+        String[] str = new String[]{};
+        //GreenCommuteApplication.main(str);
+        Assertions.assertEquals(1,2-1);
+    }
 }

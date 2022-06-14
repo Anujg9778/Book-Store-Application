@@ -4,7 +4,6 @@ import com.example.greencommute.entity.Job;
 import com.example.greencommute.respository.JobRepository;
 import com.example.greencommute.service.JobService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,26 +18,21 @@ public class JobServiceImpl  implements JobService {
     }
 
     @Override
-    @Transactional
     public List<Job> findAllJobs() {
-        return jobRepository
-                .findAll();
+        return jobRepository.findAll();
     }
 
     @Override
-    @Transactional
     public Optional<Job> findJobById(int theJobId) {
         return jobRepository.findById(theJobId);
     }
 
     @Override
-    @Transactional
     public void deleteJob(int theJobId) {
         jobRepository.deleteById(theJobId);
     }
 
     @Override
-    @Transactional
     public Job saveJob(Job theJob) {
         return jobRepository.save(theJob);
     }

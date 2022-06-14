@@ -1,6 +1,5 @@
 package com.example.greencommute.controller;
 
-
 import com.example.greencommute.dto.JobDTO;
 import com.example.greencommute.entity.Job;
 import com.example.greencommute.entity.Skill;
@@ -8,7 +7,6 @@ import com.example.greencommute.exception.JobNotFoundException;
 import com.example.greencommute.mapper.JobMapper;
 import com.example.greencommute.service.JobService;
 import com.example.greencommute.service.SkillService;
-import com.example.greencommute.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +15,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RequestMapping("/admin")
+@RequestMapping("/jobs")
 @Slf4j
 @RestController
 public class JobController {
-    @Autowired
-    private UserService userService;
+
     @Autowired
     private SkillService skillService;
 
@@ -32,7 +29,14 @@ public class JobController {
     @Autowired
     private JobMapper jobMapper;
 
-    @PostMapping("/jobs")
+    public void checkJobId(int jobId) throws JobNotFoundException{
+        Optional<Job> theJob=jobService.findJobById(jobId);
+        if(!theJob.isPresent()){
+            throw new JobNotFoundException("Given Id does not exist");
+        }
+    }
+
+    @PostMapping("/add-job")
     public JobDTO saveJob(@RequestBody JobDTO theJobDTO){
 
         Job theJob=jobMapper.convertToJob(theJobDTO);
@@ -47,7 +51,7 @@ public class JobController {
         return jobMapper.convertToJobDTO(jobService.saveJob(theJob));
     }
 
-    @PutMapping("/jobs")
+    @PutMapping("/")
     public JobDTO updateJob(@RequestBody JobDTO theJobDTO){
 
         Job theJob=jobMapper.convertToJob(theJobDTO);
@@ -57,17 +61,16 @@ public class JobController {
         return jobMapper.convertToJobDTO(jobService.saveJob(theJob));
     }
 
-    @DeleteMapping("/jobs/{jobId}")
+    @DeleteMapping("/{jobId}")
     public String deleteJobById(@PathVariable int jobId){
 
         checkJobId(jobId);
 
         jobService.deleteJob(jobId);
         return " job with jobId :"+jobId+" deleted.";
-
     }
 
-    @GetMapping("/jobs")
+    @GetMapping("/")
     public List<JobDTO> findAllJobs(){
 
         return jobService.findAllJobs()
@@ -76,7 +79,7 @@ public class JobController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/jobs/{jobId}")
+    @GetMapping("/{jobId}")
     public JobDTO findJobById(@PathVariable int jobId){
 
         Optional<Job> theJob=jobService.findJobById(jobId);
@@ -86,7 +89,7 @@ public class JobController {
         return jobMapper.convertToJobDTO(theJob.get());
     }
 
-    @GetMapping("/jobs/location")
+    @GetMapping("/location")
     public List<JobDTO> getJobsByLocation(@RequestParam("location") String location){
 
         return jobService.getJobsByLocation(location)
@@ -95,7 +98,7 @@ public class JobController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/jobs/skills")
+    @GetMapping("/skills")
     public List<JobDTO> getJobsBySkills(@RequestParam("skill") String skill){
 
         return jobService.getJobsBySkills(skill)
@@ -104,10 +107,4 @@ public class JobController {
                 .collect(Collectors.toList());
     }
 
-    private void checkJobId(int jobId){
-        Optional<Job> theJob=jobService.findJobById(jobId);
-        if(!theJob.isPresent()){
-            throw new JobNotFoundException("Given Id does not exist");
-        }
-    }
 }

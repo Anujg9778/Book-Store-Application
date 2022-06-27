@@ -1,0 +1,28 @@
+package com.example.greencommute;
+
+import com.example.greencommute.mapper.BookMapper;
+import com.example.greencommute.mapper.JobMapper;
+import org.modelmapper.ModelMapper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+public class BookStoreApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(BookStoreApplication.class, args);
+	}
+
+	@Bean
+	public ModelMapper modelMapper()
+	{
+		return new ModelMapper();
+	}
+
+	@Bean
+	public BookMapper bookMapper(){
+		return new BookMapper(modelMapper());
+	}
+
+}

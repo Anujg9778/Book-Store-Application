@@ -1,7 +1,8 @@
-package com.example.bookstoreapplication.controller;
+package controller;
 
 import static org.mockito.Mockito.*;
 
+import com.example.bookstoreapplication.controller.BookController;
 import com.example.bookstoreapplication.dto.BookDTO;
 import com.example.bookstoreapplication.entity.Author;
 import com.example.bookstoreapplication.entity.Book;

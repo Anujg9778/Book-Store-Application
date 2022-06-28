@@ -17,12 +17,11 @@
 		<java.version>11</java.version>
 		<sonar.organization>booklistapplication</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-<!--		<sonar.projectKey>Anubhav-Zemosolabs_book_list_app</sonar.projectKey>-->
+		<sonar.projectKey>springbootbooklistapp</sonar.projectKey>
 		<jacoco.version>0.8.6</jacoco.version>
 		<sonar.sources>src/main/java</sonar.sources>
 		<sonar.language>java</sonar.language>
 		<sonar.exclusions>
-			**/com/example/bookstoreapplication/security/**
 			**/com/example/bookstoreapplication/dto/**
 			**/com/example/bookstoreapplication/entity/**
 			**/com/example/bookstoreapplication/mapper/**
@@ -83,17 +82,6 @@
 			<version>3.23.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-			<version>2.7.0</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>

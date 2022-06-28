@@ -1,7 +1,7 @@
-package com.example.greencommute.mapper;
+package com.example.bookstoreapplication.mapper;
 
-import com.example.greencommute.dto.BookDTO;
-import com.example.greencommute.entity.Book;
+import com.example.bookstoreapplication.dto.BookDTO;
+import com.example.bookstoreapplication.entity.Book;
 
 import org.modelmapper.ModelMapper;
 
@@ -26,6 +26,5 @@ public class BookMapper {
     public List<BookDTO> toBookDtoList(List<Book> booksList){
         return booksList.stream().map(this::convertToBookDTO).collect(Collectors.toList());
     }
-
 }
 

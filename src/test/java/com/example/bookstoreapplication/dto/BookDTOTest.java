@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
-class JobDTOTest {
+class BookDTOTest {
 
     BookDTO bookDTO=new BookDTO(1,"Twilight Saga", 250, "Robert Madson Story",4.2,null,null);
 

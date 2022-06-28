@@ -1,9 +1,8 @@
-package com.example.greencommute.service.impl;
+package com.example.bookstoreapplication.service.impl;
 
-import com.example.bookstoreapplication.entity.Author;
-import com.example.bookstoreapplication.respository.AuthorRepository;
-import com.example.bookstoreapplication.service.AuthorService;
-import com.example.bookstoreapplication.service.impl.AuthorServiceImpl;
+import com.example.bookstoreapplication.entity.Category;
+import com.example.bookstoreapplication.respository.CategoryRepository;
+import com.example.bookstoreapplication.service.CategoryService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,33 +19,33 @@ import java.util.Optional;
 class CategoryServiceImplTest {
 
     @Mock
-    AuthorRepository authorRepository;
+    CategoryRepository categoryRepository;
 
-    private AuthorService authorService;
+    private CategoryService categoryService;
 
     @BeforeEach
     void initUseCase(){
-        authorService = new AuthorServiceImpl(authorRepository);
+        categoryService = new CategoryServiceImpl(categoryRepository);
     }
 
 
     @Test
-    void findAuthor() {
-        Optional<Author> author=Optional.of(new Author(1,"Aman Agarwal"));
+    void findCategory() {
+        Optional<Category> category=Optional.of(new Category(1,"Educational"));
 
-        Mockito.when(authorRepository.findById(1)).thenReturn(author);
-        Assertions.assertEquals(author, authorService.findAuthorById(1));
-        Mockito.verify(authorRepository).findById(1);
+        Mockito.when(categoryRepository.findById(1)).thenReturn(category);
+        Assertions.assertEquals(category, categoryService.findCategoryById(1));
+        Mockito.verify(categoryRepository).findById(1);
 
     }
 
     @Test
-    void saveAuthor() {
-        Author author=new Author(1,"Robin Sharma");
+    void saveCategory() {
+        Category category=new Category(1,"Educational");
 
-        Mockito.when(authorRepository.save(author)).thenReturn(author);
-        Assertions.assertEquals(author, authorService.saveAuthor(author));
-        Mockito.verify(authorRepository).save(author);
+        Mockito.when(categoryRepository.save(category)).thenReturn(category);
+        Assertions.assertEquals(category, categoryService.saveCategory(category));
+        Mockito.verify(categoryRepository).save(category);
 
     }
 }

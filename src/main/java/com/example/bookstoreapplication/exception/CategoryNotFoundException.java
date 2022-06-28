@@ -1,4 +1,4 @@
-package com.example.greencommute.exception;
+package com.example.bookstoreapplication.exception;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

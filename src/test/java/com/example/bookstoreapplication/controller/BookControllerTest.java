@@ -1,10 +1,7 @@
-package com.example.greencommute.controller;
-
+package com.example.bookstoreapplication.controller;
 
 import static org.mockito.Mockito.*;
 
-
-import com.example.bookstoreapplication.controller.BookController;
 import com.example.bookstoreapplication.dto.BookDTO;
 import com.example.bookstoreapplication.entity.Author;
 import com.example.bookstoreapplication.entity.Book;
@@ -54,8 +51,6 @@ public class BookControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-
-
     @BeforeEach
     void setup() {
         mockMvc = MockMvcBuilders.standaloneSetup(bookController).build();
@@ -71,12 +66,12 @@ public class BookControllerTest {
 
     @Test
     void getBookByIdTest() throws Exception {
-        Book book = new Book(1, "Story of Sphered Boy", "Alchemist", 450.00, 4.54, null, null);
+        Book book = new Book(1,"Discrete Mathematics",450.00, "Covered all static problems", 4.2, null,null);
         BookDTO BookDto = bookMapper.convertToBookDTO(book);
         Optional<Book> bookOptional = Optional.of(book);
 
         when(bookService.findBookById(1)).thenReturn(bookOptional);
-        mockMvc.perform(MockMvcRequestBuilders.get("/jobs/1").
+        mockMvc.perform(MockMvcRequestBuilders.get("/books/1").
                         contentType(MediaType.APPLICATION_JSON).
                         content(asJsonString(BookDto))).
                 andDo(MockMvcResultHandlers.print());
@@ -86,14 +81,14 @@ public class BookControllerTest {
 
     @Test
     void getBookTest() throws Exception{
-        Book book = new Book(1,"A sphered Boy","The Alchemist",350, 4.5, null, null);
-        Author author1 = new Author(1,"Paul Coehlo");
+        Book book = new Book(1,"Discrete Mathematics",450.00, "Covered all static problems", 4.2, null,null);
+        Author author1 = new Author(1,"Arunav Gupta");
         Author author2 = new Author(2,"Robin Sharma");
-        List<Author> bookList = new ArrayList<>();
-        bookList.add(author1);
-        bookList.add(author2);
+        List<Author> authorList = new ArrayList<>();
+        authorList.add(author1);
+        authorList.add(author2);
 
-        book.setAuthor(bookList);
+        book.setAuthor(authorList);
         BookDTO bookDto = bookMapper.convertToBookDTO(book);
         Optional<Book> bookOptional = Optional.of(book);
         List<Book> bookList = new ArrayList<>();
@@ -103,35 +98,35 @@ public class BookControllerTest {
 
         getAllBookTest(bookList, bookDtoList);
 
-        getJobByCategoryTest(bookList, bookDtoList);
+        getBookByCategoryTest(bookList, bookDtoList);
 
-        getJobByAuthor(bookList, bookDtoList);
+        getBookByAuthor(bookList, bookDtoList);
 
     }
 
-    private void getJobBySkill(List<Book> jobsList, List<BookDTO> jobsDtoList) throws Exception {
-        when(bookService.getBooksByAuthor("Paul Coehlo")).thenReturn(jobsList);
-        mockMvc.perform(MockMvcRequestBuilders.get("/jobs/skills?skill=hibernate").
-                        contentType(MediaType.APPLICATION_JSON).
-                        content(asJsonString(jobsDtoList))).
-                andDo(MockMvcResultHandlers.print());
-        verify(bookService).getBooksByAuthor("Robin Sharma");
-        verify(bookService,times(1)).getBooksByAuthor("James Clear");
-    }
-
-    private void getJobByLocationTest(List<Book> bookList, List<BookDTO> bookDtoList) throws Exception {
-        when(bookService.getBooksByCategory("Drama")).thenReturn(bookList);
-        mockMvc.perform(MockMvcRequestBuilders.get("/jobs/location?location=Hyderabad").
+    private void getBookByAuthor(List<Book> bookList, List<BookDTO> bookDtoList) throws Exception {
+        when(bookService.getBooksByAuthor("Arunav Gupta")).thenReturn(bookList);
+        mockMvc.perform(MockMvcRequestBuilders.get("/books/author?author = Arunav Gupta").
                         contentType(MediaType.APPLICATION_JSON).
                         content(asJsonString(bookDtoList))).
                 andDo(MockMvcResultHandlers.print());
-        verify(bookService).getBooksByCategory("Drama");
-        verify(bookService,times(1)).getBooksByCategory("Literature");
+        verify(bookService).getBooksByAuthor("Arunav Gupta");
+        verify(bookService,times(1)).getBooksByAuthor("Arunav Gupta");
     }
 
-    private void getAllJobsTest(List<Book> bookList, List<BookDTO> bookDtoList) throws Exception {
+    private void getBookByCategoryTest(List<Book> bookList, List<BookDTO> bookDtoList) throws Exception {
+        when(bookService.getBooksByCategory("Educational")).thenReturn(bookList);
+        mockMvc.perform(MockMvcRequestBuilders.get("/books/category?category = Educational").
+                        contentType(MediaType.APPLICATION_JSON).
+                        content(asJsonString(bookDtoList))).
+                andDo(MockMvcResultHandlers.print());
+        verify(bookService).getBooksByCategory("Educational");
+        verify(bookService,times(1)).getBooksByCategory("Educational");
+    }
+
+    private void getAllBookTest(List<Book> bookList, List<BookDTO> bookDtoList) throws Exception {
         when(bookService.findAllBooks()).thenReturn(bookList);
-        mockMvc.perform(MockMvcRequestBuilders.get("/jobs/").
+        mockMvc.perform(MockMvcRequestBuilders.get("/books/").
                         contentType(MediaType.APPLICATION_JSON).
                         content(asJsonString(bookDtoList))).
                 andDo(MockMvcResultHandlers.print());
@@ -140,9 +135,9 @@ public class BookControllerTest {
     }
 
     @Test
-    void checkJobIdTest(){
+    void checkBookIdTest(){
 
-        Book book = new Book(1,"A sphered Boy","The Alchemist",350, 4.5, null, null);
+        Book book = new Book(1,"Discrete Mathematics",450.00, "Covered all static problems", 4.2, null,null);
         Optional<Book> bookOptional = Optional.of(book);
 
         when(bookService.findBookById(1)).thenReturn(bookOptional);
@@ -154,25 +149,25 @@ public class BookControllerTest {
     }
 
     @Test
-    void deleteJobTest(){
-        Book book = new Book(1,"A sphered Boy","The Alchemist",350, 4.5, null, null);
+    void deleteBookTest(){
+        Book book = new Book(1,"Discrete Mathematics",450.00, "Covered all static problems", 4.2, null,null);
 
         BookDTO bookDto = bookMapper.convertToBookDTO(book);
         Optional<Book> bookOptional = Optional.of(book);
 
-        Mockito.doNothing().when(bookService).deleteBookById(4);
-        Mockito.when(bookService.findBookById(4)).thenReturn(bookOptional);
+        Mockito.doNothing().when(bookService).deleteBookById(1);
+        Mockito.when(bookService.findBookById(1)).thenReturn(bookOptional);
 
-        Assertions.assertEquals(" job with jobId :4 deleted.",bookController.deleteJobById(4));
-        verify(bookService).deleteBookById(4);
-        verify(bookService, times(1)).deleteBookById(4);
+        Assertions.assertEquals(" book with bookId :1 deleted.",bookController.deleteBookById(1));
+        verify(bookService).deleteBookById(1);
+        verify(bookService, times(1)).deleteBookById(1);
 
     }
 
     @Test
-    void updateJobTest(){
+    void updateBookTest(){
 
-        Book book = new Book(1,"A Day with a beautiful girl", "A Girl with Basket", 300, 4.5, null,null);
+        Book book = new Book(1,"Discrete Mathematics",450.00, "Covered all static problems", 4.2, null,null);
 
         BookDTO bookDto = bookMapper.convertToBookDTO(book);
         Optional<Book> bookOptional = Optional.of(book);
@@ -190,9 +185,9 @@ public class BookControllerTest {
     }
 
     @Test
-    void saveJobTest(){
+    void saveBookTest(){
 
-        Book book = new Book(1,"Story oh how to build good habits","Atomic Habit", 300, 4.7, "James Clear","Robin Sharma");
+        Book book = new Book(1,"Discrete Mathematics",450.00, "Covered all static problems", 4.2, null,null);
         Author author1 = new Author(1,"James Clear");
         List<Author> authorList = new ArrayList<>();
         authorList.add(author1);

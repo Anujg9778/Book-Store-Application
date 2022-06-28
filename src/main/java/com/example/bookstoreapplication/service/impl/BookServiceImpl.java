@@ -1,21 +1,20 @@
-package com.example.greencommute.service.impl;
+package com.example.bookstoreapplication.service.impl;
 
-import com.example.greencommute.entity.Book;
-import com.example.greencommute.respository.BookRepository;
-import com.example.greencommute.service.BookService;
+import com.example.bookstoreapplication.entity.Book;
+import com.example.bookstoreapplication.respository.BookRepository;
+import com.example.bookstoreapplication.service.BookService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BookServiceImpl  implements BookService {
+public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
 
     public BookServiceImpl(BookRepository bookRepository){
         this.bookRepository = bookRepository;
-
     }
 
     @Override
@@ -37,6 +36,7 @@ public class BookServiceImpl  implements BookService {
     public Book saveBook(Book theBook) {
         return bookRepository.save(theBook);
     }
+
 
     @Override
     public List<Book> getBooksByAuthor(String authorName) {

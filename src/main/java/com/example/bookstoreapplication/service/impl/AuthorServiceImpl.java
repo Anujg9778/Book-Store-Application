@@ -1,8 +1,8 @@
-package com.example.greencommute.service.impl;
+package com.example.bookstoreapplication.service.impl;
 
-import com.example.greencommute.entity.Author;
-import com.example.greencommute.respository.AuthorRepository;
-import com.example.greencommute.service.AuthorService;
+import com.example.bookstoreapplication.entity.Author;
+import com.example.bookstoreapplication.respository.AuthorRepository;
+import com.example.bookstoreapplication.service.AuthorService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.PUT).hasRole(ADMIN)
                 .antMatchers(HttpMethod.DELETE).hasRole(ADMIN)
-                .antMatchers("/books/add-book").hasRole(ADMIN)
+                .antMatchers("/books/add_book").hasRole(ADMIN)
                 .and()
                 .httpBasic()
                 .and()

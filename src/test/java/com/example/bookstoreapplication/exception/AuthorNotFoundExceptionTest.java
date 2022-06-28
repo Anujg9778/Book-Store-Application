@@ -1,6 +1,5 @@
-package com.example.greencommute.exception;
+package com.example.bookstoreapplication.exception;
 
-import com.example.bookstoreapplication.exception.AuthorNotFoundException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

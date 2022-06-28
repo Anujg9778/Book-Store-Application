@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class RestExceptionHandler {
 
-    @ExceptionHandler(JobNotFoundException.class)
-    public ResponseEntity<ErrorResponse> jobNotFoundExceptionHandler(JobNotFoundException exception){
+    @ExceptionHandler(BookNotFoundException.class)
+    public ResponseEntity<ErrorResponse> bookNotFoundExceptionHandler(BookNotFoundException exception){
 
         ErrorResponse error=new ErrorResponse();
         error.setMessage(exception.getMessage());

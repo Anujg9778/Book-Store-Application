@@ -1,8 +1,7 @@
-package com.example.greencommute.mapper;
+package com.example.bookstoreapplication.mapper;
 
 import com.example.bookstoreapplication.dto.BookDTO;
 import com.example.bookstoreapplication.entity.Book;
-import com.example.bookstoreapplication.mapper.BookMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,8 +31,8 @@ class BookMapperTest {
 
     @Test
     void toBookDtoTest() {
-        Book book = new Book(1,"software engineer","Ant and Grasshopper", 420.80, 4.8,null,null);
-        BookDTO bookDto = new BookDTO(1,"software engineer","Ant and Grasshopper", 420.80, 4.8,null,null);
+        Book book = new Book(1,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
+        BookDTO bookDto = new BookDTO(1,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
 
         Mockito.when(modelMapper.map(book,BookDTO.class)).thenReturn(bookDto);
         Assertions.assertEquals(bookDto,bookMapper.convertToBookDTO(book));
@@ -41,9 +40,9 @@ class BookMapperTest {
     }
 
     @Test
-    void toJobTest() {
-        Book book = new Book(1,"software engineer","Ant and Grasshopper", 420.80, 4.8,null,null);
-        BookDTO bookDto = new BookDTO(1,"software engineer","Ant and Grasshopper", 420.80, 4.8,null,null);
+    void toBookTest() {
+        Book book = new Book(1,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
+        BookDTO bookDto = new BookDTO(1,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
 
         Mockito.when(modelMapper.map(bookDto,Book.class)).thenReturn(book);
         Assertions.assertEquals(book,bookMapper.convertToBook(bookDto));
@@ -53,8 +52,8 @@ class BookMapperTest {
     @Test
     void toBookDtoListTest() {
 
-        Book book = new Book(1,"software engineer","Ant and Grasshopper", 420.80, 4.8,null,null);
-        BookDTO bookDto = new BookDTO(1,"software engineer","Ant and Grasshopper", 420.80, 4.8,null,null);
+        Book book = new Book(1,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
+        BookDTO bookDto = new BookDTO(1,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
         List<Book> bookList = new ArrayList<>();
         List<BookDTO> bookDtoList = new ArrayList<>();
         bookList.add(book);

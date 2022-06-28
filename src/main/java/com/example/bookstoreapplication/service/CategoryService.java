@@ -1,6 +1,6 @@
-package com.example.greencommute.service;
+package com.example.bookstoreapplication.service;
 
-import com.example.greencommute.entity.Category;
+import com.example.bookstoreapplication.entity.Category;
 
 import java.util.Optional;
 

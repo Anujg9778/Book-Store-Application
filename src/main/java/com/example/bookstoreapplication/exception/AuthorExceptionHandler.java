@@ -1,4 +1,4 @@
-package com.example.greencommute.exception;
+package com.example.bookstoreapplication.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.example.greencommute.entity;
+package com.example.bookstoreapplication.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,11 +16,10 @@ import javax.persistence.*;
 public class Category {
 
     @Id
-    @Column(name="category_id")
-    private String CategoryId;
+    @Column(name="id")
+    private int CategoryId;
 
-    @Column(name="category_name")
+    @Column(name="name")
     private String CategoryName;
-
 
 }

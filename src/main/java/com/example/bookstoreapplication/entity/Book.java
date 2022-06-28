@@ -1,4 +1,4 @@
-package com.example.greencommute.entity;
+package com.example.bookstoreapplication.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,11 +18,8 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="book_id")
+    @Column(name="id")
     private int bookId;
-
-    @Column(name="description")
-    private String description;
 
     @Column(name="name")
     private String bookName;
@@ -30,8 +27,11 @@ public class Book {
     @Column(name="price")
     private double bookPrice;
 
+    @Column(name="description")
+    private String description;
+
     @Column(name="rating")
-    private String bookRating;
+    private double bookRating;
 
     @ManyToMany(fetch = FetchType.LAZY,cascade =CascadeType.MERGE)
     @JoinTable(

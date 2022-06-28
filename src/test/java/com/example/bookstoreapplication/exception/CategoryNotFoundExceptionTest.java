@@ -2,14 +2,14 @@ package com.example.bookstoreapplication.exception;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class AuthorNotFoundExceptionTest {
+class CategoryNotFoundExceptionTest {
 
-    AuthorNotFoundException exception=new AuthorNotFoundException("Author not found");
+    CategoryNotFoundException exception = new CategoryNotFoundException("Category not found");
 
     @Test
-    void authorNotFoundExceptionTest(){
-        assertEquals("Author not found",exception.getMessage());
+    void categoryNotFoundExceptionTest(){
+        assertEquals("Category not found",exception.getMessage());
     }
 }

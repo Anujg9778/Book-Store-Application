@@ -1,6 +1,5 @@
-package com.example.greencommute.entity;
+package com.example.bookstoreapplication.entity;
 
-import com.example.bookstoreapplication.entity.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -9,27 +8,27 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class BookTest {
 
-    Book book = new Book(1,"Software  Development Engineer","Concept of cpp", 450.00, 4.5, null, null);
+    Book book = new Book(1,"Discrete Mathematics",450.00, "Covered all static problems", 4.2, null,null);
 
     @Test
-    void jobEntityTest(){
+    void bookEntityTest(){
 
         assertEquals(1,book.getBookId());
-        assertEquals("Software Engineer",book.getBookName());
-        assertEquals("4.5",book.getBookRating());
+        assertEquals("Discrete Mathematics",book.getBookName());
+        assertEquals("4.2",book.getBookRating());
         assertNull(book.getAuthor());
 
         Book book1=new Book();
         book1.setBookId(2);
-        book1.setBookName("Software Engineer");
+        book1.setBookName("Discrete Mathematics");
         book1.setBookPrice(450);
-        book1.setBookRating(4.5);
+        book1.setBookRating(4.2);
         book1.setAuthor(null);
         book1.setCategory(null);
 
         assertEquals(2,book1.getBookId());
-        assertEquals("Software Engineer",book1.getBookName());
-        assertEquals("Mumbai",book1.getBookPrice());
+        assertEquals("Discrete Mathematics",book1.getBookName());
+        assertEquals("450",book1.getBookPrice());
         assertNull(book1.getAuthor());
     }
 

@@ -1,7 +1,6 @@
-package com.example.greencommute;
+package com.example.bookstoreapplication;
 
-import com.example.greencommute.mapper.BookMapper;
-import com.example.greencommute.mapper.JobMapper;
+import com.example.bookstoreapplication.mapper.BookMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

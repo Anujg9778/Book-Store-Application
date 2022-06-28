@@ -20,14 +20,11 @@ import java.util.stream.Collectors;
 @RequestMapping("/books")
 @Slf4j
 @RestController
-public class JobController {
-
+public class BookController {
     @Autowired
     private AuthorService authorService;
-
     @Autowired
     private BookService bookService;
-
     @Autowired
     private CategoryService categoryService;
 
@@ -41,7 +38,7 @@ public class JobController {
         }
     }
 
-    @PostMapping("/add-book")
+    @PostMapping("/add_book")
     public BookDTO saveBook(@RequestBody BookDTO theBookDTO){
 
         Book theBook=bookMapper.convertToBook(theBookDTO);
@@ -75,12 +72,12 @@ public class JobController {
     }
 
     @DeleteMapping("/{bookId}")
-    public String deleteJobById(@PathVariable int bookId){
+    public String deleteBookById(@PathVariable int bookId){
 
         checkBookId(bookId);
 
         bookService.deleteBookById(bookId);
-        return " book with bookId :"+bookId+" deleted.";
+        return " book with bookId :" + bookId + " deleted.";
     }
 
     @GetMapping("/")
@@ -93,7 +90,7 @@ public class JobController {
     }
 
     @GetMapping("/{bookId}")
-    public BookDTO findJobById(@PathVariable int bookId){
+    public BookDTO findBookById(@PathVariable int bookId){
 
         Optional<Book> theBook=bookService.findBookById(bookId);
         if(!theBook.isPresent()){
@@ -102,9 +99,9 @@ public class JobController {
         return bookMapper.convertToBookDTO(theBook.get());
     }
 
-    @GetMapping("/location")
+    @GetMapping("/author")
     public List<BookDTO> getBooksByAuthor(@RequestParam("author") String author){
-
+        System.out.println(author);
         return bookService.getBooksByAuthor(author)
                 .stream()
                 .map(bookMapper::convertToBookDTO)
@@ -112,7 +109,7 @@ public class JobController {
     }
 
     @GetMapping("/category")
-    public List<BookDTO> getBookBySkills(@RequestParam("category") String category){
+    public List<BookDTO> getBookByCategory(@RequestParam("category") String category){
 
         return bookService.getBooksByCategory(category)
                 .stream()

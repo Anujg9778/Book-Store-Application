@@ -1,7 +1,5 @@
-package com.example.greencommute.entity;
+package com.example.bookstoreapplication.entity;
 
-import com.example.bookstoreapplication.entity.Author;
-import com.example.bookstoreapplication.entity.Category;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

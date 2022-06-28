@@ -1,4 +1,4 @@
-package com.example.greencommute.entity;
+package com.example.bookstoreapplication.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -13,15 +13,15 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name="skills")
+@Table(name="author")
 public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="author_id")
+    @Column(name="id")
     private int authorId;
 
-    @Column(name="author_name")
+    @Column(name="name")
     private String authorName;
 
 }

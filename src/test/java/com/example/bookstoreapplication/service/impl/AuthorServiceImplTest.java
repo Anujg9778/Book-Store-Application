@@ -1,9 +1,8 @@
-package com.example.greencommute.service.impl;
+package com.example.bookstoreapplication.service.impl;
 
 import com.example.bookstoreapplication.entity.Author;
 import com.example.bookstoreapplication.respository.AuthorRepository;
 import com.example.bookstoreapplication.service.AuthorService;
-import com.example.bookstoreapplication.service.impl.AuthorServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +31,7 @@ class AuthorServiceImplTest {
 
     @Test
     void findAuthor() {
-        Optional<Author> author=Optional.of(new Author(1,"Aman Agarwal"));
+        Optional<Author> author=Optional.of(new Author(1,"Arunav Gupta"));
 
         Mockito.when(authorRepository.findById(1)).thenReturn(author);
         Assertions.assertEquals(author, authorService.findAuthorById(1));
@@ -42,7 +41,7 @@ class AuthorServiceImplTest {
 
     @Test
     void saveAuthor() {
-        Author author=new Author(1,"Robin Sharma");
+        Author author=new Author(1,"Arunav Gupta");
 
         Mockito.when(authorRepository.save(author)).thenReturn(author);
         Assertions.assertEquals(author, authorService.saveAuthor(author));

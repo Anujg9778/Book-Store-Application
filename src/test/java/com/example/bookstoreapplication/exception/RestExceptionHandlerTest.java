@@ -1,8 +1,5 @@
-package com.example.greencommute.exception;
+package com.example.bookstoreapplication.exception;
 
-import com.example.bookstoreapplication.exception.BookNotFoundException;
-import com.example.bookstoreapplication.exception.ErrorResponse;
-import com.example.bookstoreapplication.exception.RestExceptionHandler;
 import com.example.bookstoreapplication.respository.BookRepository;
 import com.example.bookstoreapplication.service.BookService;
 import com.example.bookstoreapplication.service.impl.BookServiceImpl;

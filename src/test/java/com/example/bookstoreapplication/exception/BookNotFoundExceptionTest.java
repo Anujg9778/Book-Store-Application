@@ -1,6 +1,5 @@
-package com.example.greencommute.exception;
+package com.example.bookstoreapplication.exception;
 
-import com.example.bookstoreapplication.exception.BookNotFoundException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,7 +10,7 @@ class BookNotFoundExceptionTest {
     void exceptionTest(){
         Throwable throwable=new Throwable();
 
-        BookNotFoundException exception=new BookNotFoundException("Job Id Not Found");
+        BookNotFoundException exception=new BookNotFoundException("Book Id Not Found");
         assertEquals("Book Id Not Found",exception.getMessage());
 
         BookNotFoundException exception1=new BookNotFoundException(throwable);

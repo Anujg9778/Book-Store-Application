@@ -1,8 +1,8 @@
-package com.example.greencommute.service.impl;
+package com.example.bookstoreapplication.service.impl;
 
-import com.example.greencommute.entity.Category;
-import com.example.greencommute.respository.CategoryRepository;
-import com.example.greencommute.service.CategoryService;
+import com.example.bookstoreapplication.entity.Category;
+import com.example.bookstoreapplication.respository.CategoryRepository;
+import com.example.bookstoreapplication.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

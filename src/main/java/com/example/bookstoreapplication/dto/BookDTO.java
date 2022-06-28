@@ -1,8 +1,8 @@
-package com.example.greencommute.dto;
+package com.example.bookstoreapplication.dto;
 
 
-import com.example.greencommute.entity.Author;
-import com.example.greencommute.entity.Category;
+import com.example.bookstoreapplication.entity.Author;
+import com.example.bookstoreapplication.entity.Category;
 import lombok.*;
 
 import java.util.List;
@@ -14,9 +14,9 @@ import java.util.List;
 public class BookDTO {
 
     private int bookId;
-    private String description;
     private String bookName;
     private double bookPrice;
+    private String description;
     private double bookRating;
     private List<Author> author;
     private List<Category> category;

@@ -1,11 +1,10 @@
-package com.example.greencommute.service.impl;
+package com.example.bookstoreapplication.service.impl;
 
 import com.example.bookstoreapplication.entity.Author;
 import com.example.bookstoreapplication.entity.Book;
 import com.example.bookstoreapplication.entity.Category;
 import com.example.bookstoreapplication.respository.BookRepository;
 import com.example.bookstoreapplication.service.BookService;
-import com.example.bookstoreapplication.service.impl.BookServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,8 +38,8 @@ class BookServiceImplTest {
     @Test
     void findAllBookTest() {
 
-        Book book1=new Book(0,"System Engineer Guide","Arunav Gupta", 300.00, 4.1, null,null);
-        Book book2=new Book(0,"C shark developer Guide","Akash Agarwal", 290,4.0,null,null);
+        Book book1=new Book(0,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
+        Book book2=new Book(0,"C shark developer Guide",290.00,"Akash Agarwal", 3.8,null,null);
 
         List<Book> bookList = new ArrayList<>();
         bookList.add(book1);
@@ -51,8 +50,8 @@ class BookServiceImplTest {
     }
 
     @Test
-    void findJobByIdTest() {
-        Book book = new Book(1,"Wings of Fire","DR. A.P.J. Abdul Kalaam",280,4.5, null, null);
+    void findBookByIdTest() {
+        Book book = new Book(1,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
         Optional<Book> bookOptional = Optional.of(book);
         Mockito.when(bookRepository.findById(1)).thenReturn(bookOptional);
         Assertions.assertEquals(bookOptional, bookService.findBookById(1));
@@ -62,7 +61,7 @@ class BookServiceImplTest {
     @Test
     void deleteBookTest() {
 
-        Book book = new Book(1,"Wings of Fire","DR. A.P.J. Abdul Kalaam",280,4.5, null, null);
+        Book book = new Book(1,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
 
         doNothing().when(bookRepository).deleteById(1);
         bookService.deleteBookById(1);
@@ -72,38 +71,28 @@ class BookServiceImplTest {
 
     @Test
     void saveBookTest() {
-        Book book = new Book(1,"Wings of Fire","DR. A.P.J. Abdul Kalaam",280,4.5, null, null);
+        Book book = new Book(1,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
 
         Mockito.when(bookRepository.save(book)).thenReturn(book);
         Assertions.assertEquals(book, bookService.saveBook(book));
         Mockito.verify(bookRepository).save(book);
     }
 
-//    @Test
-//    void getBookByPriceTest() {
-//        List<Book> bookList = new ArrayList<>();
-//        Book book = new Book(1,"Wings of Fire","DR. A.P.J. Abdul Kalaam",280,4.5, null, null);
-//        bookList.add(book);
-//        Mockito.when(bookRepository.getBookByPrice("420")).thenReturn(bookList);
-//        Assertions.assertEquals(bookList, bookService.getBookByPriceTest("Hyderabad"));
-//        Mockito.verify(bookRepository).getBookByPriceTest("Hyderabad");
-//    }
-
     @Test
     void getBooksByAuthorTest() {
 
         List<Book> bookList = new ArrayList<>();
 
-        Author author=new Author(1,"Dr. A.P.J. Abdul Kalaam");
+        Author author=new Author(1,"Arunav Gupta");
         List<Author> authors=new ArrayList<>();
         authors.add(author);
 
-        Book book = new Book(1,"Book written by Kalaam Sir","Wings of Fire",280,4.5, null, null);
+        Book book = new Book(1,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
         bookList.add(book);
 
-        Mockito.when(bookRepository.getBookByAuthor("Dr. A.P.J. Abdul Kalaam")).thenReturn(bookList);
-        Assertions.assertEquals(bookList, bookService.getBooksByAuthor("Dr. A.P.J. Abdul Kalaam"));
-        Mockito.verify(bookRepository).getBookByAuthor("Dr. A.P.J. Abdul Kalaam");
+        Mockito.when(bookRepository.getBookByAuthor("Arunav Gupta")).thenReturn(bookList);
+        Assertions.assertEquals(bookList, bookService.getBooksByAuthor("Arunav Gupta"));
+        Mockito.verify(bookRepository).getBookByAuthor("Arunav Gupta");
 
     }
 
@@ -112,16 +101,16 @@ class BookServiceImplTest {
 
         List<Book> bookList = new ArrayList<>();
 
-        Category category=new Category(1,"Motivational");
+        Category category=new Category(1,"Educational");
         List<Category> categories=new ArrayList<>();
         categories.add(category);
 
-        Book book = new Book(1,"Book written by Kalaam Sir","Wings of Fire",280,4.5, null, null);
+        Book book = new Book(1,"System Engineer Guide",300.00,"Arunav Gupta",  4.1, null,null);
         bookList.add(book);
 
-        Mockito.when(bookRepository.getBookByCategory("Motivational")).thenReturn(bookList);
-        Assertions.assertEquals(bookList, bookService.getBooksByCategory("Motivational"));
-        Mockito.verify(bookRepository).getBookByCategory("Motivational");
+        Mockito.when(bookRepository.getBookByCategory("Educational")).thenReturn(bookList);
+        Assertions.assertEquals(bookList, bookService.getBooksByCategory("Educational"));
+        Mockito.verify(bookRepository).getBookByCategory("Educational");
 
     }
 }
